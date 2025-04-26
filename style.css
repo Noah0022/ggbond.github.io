@@ -1,0 +1,102 @@
+/* 基础样式 */
+:root {
+    --primary-color: #2A3950;
+    --accent-color: #FF6B6B;
+    --tech-gradient: linear-gradient(135deg, #4CA1AF 0%, #C4E0E5 100%);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui;
+    line-height: 1.6;
+    background: #f0f3f5;
+}
+
+/* 头部样式 */
+.header {
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* 时间线布局 */
+.timeline {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 2rem;
+    margin-left: 1rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-year {
+    position: absolute;
+    left: -2.8rem;
+    top: 0;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+}
+
+/* 技能云特效 */
+.skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skill-item {
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    background: #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+.skill-item.elite {
+    background: var(--tech-gradient);
+    color: white;
+    font-weight: bold;
+}
+
+/* 浮动导航 */
+.quick-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 100;
+}
+
+.nav-item {
+    writing-mode: vertical-rl;
+    padding: 1rem;
+    background: rgba(42, 57, 80, 0.9);
+    color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .quick-nav { right: 0.5rem; }
+}
+
+@media print {
+    .quick-nav { display: none; }
+    .card { box-shadow: none; }
+}
