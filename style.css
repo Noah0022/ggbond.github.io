@@ -100,3 +100,86 @@ body {
     .quick-nav { display: none; }
     .card { box-shadow: none; }
 }
+
+
+/* 新增角色样式 */
+.character-container {
+    position: relative;
+    width: 180px;
+    margin: 0 auto 2rem;
+}
+
+.character {
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.glow {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(255,107,107,0.4) 0%, 
+        rgba(255,107,107,0.2) 70%, 
+        transparent 100%);
+    top: -5%;
+    left: -5%;
+    animation: pulse 2s infinite;
+}
+
+/* 全息投影面板 */
+/* 新增 hologram 动画 */
+.hologram {
+    background: linear-gradient(45deg, 
+        rgba(76,161,175,0.8) 0%, 
+        rgba(196,224,229,0.6) 100%);
+    border-radius: 10px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.hologram::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 48%, 
+        rgba(255,255,255,0.1) 50%,
+        transparent 52%);
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translate(0,0) rotate(45deg); }
+    100% { transform: translate(100%,100%) rotate(45deg); }
+}
+
+.tech-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.tech-btn.active {
+    background: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.tech-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(42,57,80,0.3);
+}

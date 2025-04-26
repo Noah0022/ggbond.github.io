@@ -15,7 +15,15 @@
         <a href="#projects" class="nav-item">💻项目</a>
     </nav>
 
+    <!-- 在header部分更新图片链接 -->
     <header class="header">
+        <div class="character-container">
+            <img src="https://i.postimg.cc/9M6XjZy4/ggbond-tech.png" 
+                 alt="GGbond科技形象" 
+                 class="character" 
+                 id="mainCharacter">
+            <div class="glow"></div>
+        </div>
         <h1 class="title">GGbond</h1>
         <div class="contact-grid">
             <div>📞 +86 199-8888-5678</div>
@@ -61,8 +69,19 @@
         </section>
 
         <!-- 技能部分 -->
+        <!-- 更新技能部分互动面板 -->
         <section id="skills" class="card">
             <h3>🔧 技术能力</h3>
+            <div class="interactive-panel">
+                <div class="hologram" id="techHologram">
+                    <div class="hologram-content"></div>
+                </div>
+                <div class="skill-controls">
+                    <button class="tech-btn" data-tech="rust">🦀 Rust核心</button>
+                    <button class="tech-btn" data-tech="quantum">⚛️ 量子计算</button>
+                    <button class="tech-btn" data-tech="iot">🌐 物联系统</button>
+                </div>
+            </div>
             <div class="skill-cloud">
                 <span class="skill-item elite">Rust</span>
                 <span class="skill-item elite">量子计算</span>
