@@ -1,185 +1,126 @@
-/* 基础样式 */
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
 :root {
-    --primary-color: #2A3950;
-    --accent-color: #FF6B6B;
-    --tech-gradient: linear-gradient(135deg, #4CA1AF 0%, #C4E0E5 100%);
+    --primary-color: #2A5CAA;  /* 主蓝色 */
+    --accent-color: #FF6B35;   /* 强调橙色 */
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+    --card-bg: white;
+}
+
+/* 暗黑模式变量 */
+.dark-mode {
+    --text-color: #e0e0e0;
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
 }
 
 body {
-    font-family: 'Segoe UI', system-ui;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
-    background: #f0f3f5;
+    transition: all 0.3s ease;
+}
+
+/* 布局容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* 头部样式 */
 .header {
+    text-align: center;
+    padding: 2rem 0;
     background: var(--primary-color);
     color: white;
-    padding: 2rem;
-    text-align: center;
-    position: relative;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
 }
 
-/* 时间线布局 */
-.timeline {
-    border-left: 3px solid var(--accent-color);
-    padding-left: 2rem;
-    margin-left: 1rem;
-}
-
-.timeline-item {
-    position: relative;
+/* 卡片式布局 */
+.section-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
 }
 
-.timeline-year {
-    position: absolute;
-    left: -2.8rem;
-    top: 0;
+/* 两栏布局 */
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* 技能标签样式 */
+.skill-tag {
+    display: inline-block;
     background: var(--accent-color);
     color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-}
-
-/* 技能云特效 */
-.skill-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.skill-item {
-    padding: 0.5rem 1.2rem;
+    padding: 4px 12px;
     border-radius: 20px;
-    background: #e0e0e0;
-    transition: transform 0.3s ease;
+    margin: 4px;
+    font-size: 0.9em;
 }
 
-.skill-item.elite {
-    background: var(--tech-gradient);
-    color: white;
-    font-weight: bold;
+/* 时间线样式 */
+.timeline-item {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
 }
 
-/* 浮动导航 */
-.quick-nav {
+.timeline-item::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: 6px;
+}
+
+/* 暗黑模式切换按钮 */
+#theme-toggle {
     position: fixed;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    z-index: 100;
-}
-
-.nav-item {
-    writing-mode: vertical-rl;
-    padding: 1rem;
-    background: rgba(42, 57, 80, 0.9);
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
     color: white;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    .quick-nav { right: 0.5rem; }
-}
-
-@media print {
-    .quick-nav { display: none; }
-    .card { box-shadow: none; }
-}
-
-
-/* 新增角色样式 */
-.character-container {
-    position: relative;
-    width: 180px;
-    margin: 0 auto 2rem;
-}
-
-.character {
-    width: 100%;
-    border-radius: 50%;
-    border: 3px solid var(--accent-color);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.glow {
-    position: absolute;
-    width: 110%;
-    height: 110%;
-    background: radial-gradient(circle at 50% 50%, 
-        rgba(255,107,107,0.4) 0%, 
-        rgba(255,107,107,0.2) 70%, 
-        transparent 100%);
-    top: -5%;
-    left: -5%;
-    animation: pulse 2s infinite;
-}
-
-/* 全息投影面板 */
-/* 新增 hologram 动画 */
-.hologram {
-    background: linear-gradient(45deg, 
-        rgba(76,161,175,0.8) 0%, 
-        rgba(196,224,229,0.6) 100%);
-    border-radius: 10px;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-.hologram::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        transparent 48%, 
-        rgba(255,255,255,0.1) 50%,
-        transparent 52%);
-    animation: scan 4s linear infinite;
-}
-
-@keyframes scan {
-    0% { transform: translate(0,0) rotate(45deg); }
-    100% { transform: translate(100%,100%) rotate(45deg); }
-}
-
-.tech-btn {
-    background: var(--primary-color);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.tech-btn.active {
-    background: var(--accent-color);
-    box-shadow: 0 0 15px var(--accent-color);
-}
-
-.tech-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(42,57,80,0.3);
+    .columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
 }
